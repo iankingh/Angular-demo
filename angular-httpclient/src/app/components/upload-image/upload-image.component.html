@@ -1,0 +1,12 @@
+    <img mat-card-image height="200" [src]="frontendImgURL" *ngIf="frontendImgURL">
+
+    <input style="display: none" type="file" accept=".jpg,.jpeg,.heic"  #tfrontendfile (change)="frontendPreview(tfrontendfile.files)">
+
+    <button color="" mat-stroked-button (click)="tfrontendfile.click()">
+      讀取
+    </button>
+
+    <button (click)="uploadImage()">
+
+      上傳
+    </button>
