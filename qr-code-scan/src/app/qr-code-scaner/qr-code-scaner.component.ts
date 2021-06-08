@@ -81,6 +81,7 @@ export class QrCodeScanerComponent implements OnInit {
       hasPermission: this.hasPermission,
     };
 
+    alert("data : " +  data);
     // this._dialog.open(AppInfoDialogComponent, { data });
   }
 
@@ -97,7 +98,5 @@ export class QrCodeScanerComponent implements OnInit {
   }
 
 }
-function FormatsDialogComponent(FormatsDialogComponent: any, arg1: { data: { formatsEnabled: BarcodeFormat[]; }; }) {
-  throw new Error('Function not implemented.');
-}
+
 
