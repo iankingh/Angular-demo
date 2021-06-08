@@ -18,9 +18,6 @@ export class UploadImageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-
   // 讀取預覽
   frontendPreview(files: FileList) {
     if (files.length === 0) {
@@ -71,10 +68,10 @@ export class UploadImageComponent implements OnInit {
     return reader;
   }
 
-  uploadImage(){
+  uploadImage() {
     const apiURL = 'http://localhost:8080/upload/base64';
     const formData = new FormData();
-    formData.append('img',   this.frontendImgURL);
+    formData.append('img', this.frontendImgURL);
 
     this.http.post(apiURL, formData)
       .pipe(
@@ -86,7 +83,7 @@ export class UploadImageComponent implements OnInit {
           alert('上傳失敗 ');
         }
       )
-      }
+  }
 
 
 }
