@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataBindingPropertyBindingComponent implements OnInit {
 
+  title = 'Test';
   itemImageUrl = 'assets/phone.png';
   isUnchanged = true;
   classes = 'special';

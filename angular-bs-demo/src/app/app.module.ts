@@ -9,6 +9,8 @@ import { DataBindingInterpolationComponent } from './components/data-binding-int
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DataBindingPropertyBindingComponent } from './components/data-binding-property-binding/data-binding-property-binding.component';
+import { DataBindingPropertyTwoWayBindingComponent } from './components/data-binding-property-two-way-binding/data-binding-property-two-way-binding.component';
+import { DataBindingPropertyEventBindingComponent } from './components/data-binding-property-event-binding/data-binding-property-event-binding.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { DataBindingPropertyBindingComponent } from './components/data-binding-p
     DataBindingInterpolationComponent,
     HomeComponent,
     NotFoundComponent,
-    DataBindingPropertyBindingComponent
+    DataBindingPropertyBindingComponent,
+    DataBindingPropertyTwoWayBindingComponent,
+    DataBindingPropertyEventBindingComponent
   ],
   imports: [
     BrowserModule,
