@@ -1,27 +1,33 @@
 # AngularE2eLab
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+## 安裝 Cypress
 
-## Development server
+```cmd
+npm install cypress --save-dev
+ # or 使用schematic建新專案 # 會幫你移除angular內建的
+Protractor
+ng add @briebug/cypress-schematic
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
 
-## Code scaffolding
+## 執行 Cypress
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+修改 package.json 的 scripts 區塊
+"cypress:open": "cypress open"
+執行 
+npm start
+npm run cypress:open
+```
 
-## Build
+如果啟動有問題可以 移除 
+C:\Users\Ian\AppData\Local\Cypress\Cache\
+再重新安裝
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 參考

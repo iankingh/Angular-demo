@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "75a90fc5-1d9e-423b-8bea-01a7d7d26597"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -97,6 +100,43 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "cypress-run": {
+          "builder": "@briebug/cypress-schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-e2e-lab:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-e2e-lab:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@briebug/cypress-schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-e2e-lab:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-e2e-lab:serve:production"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@briebug/cypress-schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-e2e-lab:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-e2e-lab:serve:production"
+            }
           }
         }
       }
