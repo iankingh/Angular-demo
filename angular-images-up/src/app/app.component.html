@@ -1,0 +1,13 @@
+<hello name="{{ name }}"></hello>
+<div>
+
+
+    <img  height="200" [src]="frontendImgURL" *ngIf="frontendImgURL">
+      <input style="display: none" type="file"   #tfrontendfile (change)="frontendPreview(tfrontendfile.files)">
+      <br>
+      <button color="" mat-stroked-button (click)="tfrontendfile.click()">
+        讀取
+      </button>
+
+
+</div>

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,16 +18,17 @@ import { DataBindingPropertyEventBindingComponent } from './components/data-bind
     AppComponent,
     ChildComponent,
     ParentComponent,
-    DataBindingInterpolationComponent,
     HomeComponent,
     NotFoundComponent,
     DataBindingPropertyBindingComponent,
     DataBindingPropertyTwoWayBindingComponent,
-    DataBindingPropertyEventBindingComponent
+    DataBindingPropertyEventBindingComponent,
+    DataBindingInterpolationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule ,
   ],
   providers: [],
   bootstrap: [AppComponent]

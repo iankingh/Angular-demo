@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataBindingPropertyTwoWayBindingComponent implements OnInit {
 
+  keyword = ''
+
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  keywordReset(){
+
   }
 
 }

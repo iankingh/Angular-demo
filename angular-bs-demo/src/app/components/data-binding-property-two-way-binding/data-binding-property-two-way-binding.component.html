@@ -1,1 +1,13 @@
-<p>data-binding-property-two-way-binding works!</p>
+<h1 id="two-way">Two-way Binding</h1>
+<div id="two-way-1">
+
+  <div >
+
+    <input type="text" [(ngModel)]="keyword" (keyup.escape)="keywordReset()" placeholder="請輸入關鍵字">
+    <pre> 輸入關鍵字 : {{ keyword}}</pre>
+    <pre> 目前字數 : {{ keyword.length }}</pre>
+
+  </div>
+
+
+</div>
