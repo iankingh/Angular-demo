@@ -1,7 +1,6 @@
 # Angular Applicont
 
 
-
 ## 妥善規劃 Angular 應用程式 
 
 * 規劃功能清單 ( Function List )
