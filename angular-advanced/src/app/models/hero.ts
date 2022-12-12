@@ -1,6 +1,6 @@
 
 /**
- * ctor
+ * Hero
  * @param name 姓名
  * @param age 年纪
  * @param gender 性别
