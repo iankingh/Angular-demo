@@ -21,7 +21,7 @@ describe('DatepickerMinMaxExample', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('initializes minDate and maxDate in ngOnInit', () => {
+  it('initializes minDate and maxDate inline', () => {
     const fixture = create();
     const { minDate, maxDate } = fixture.componentInstance;
     expect(minDate).toBeInstanceOf(Date);
@@ -44,11 +44,11 @@ describe('DatepickerMinMaxExample', () => {
     expect(Math.round((maxMidnight.getTime() - today.getTime()) / dayMs)).toBe(8);
   });
 
-  it('addDate returns a Date n days from today', () => {
+  it('addDays returns a Date n days from today', () => {
     const fixture = create();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const result = new Date(fixture.componentInstance.addDate(5));
+    const result = new Date(fixture.componentInstance.addDays(5));
     result.setHours(0, 0, 0, 0);
     const dayMs = 24 * 60 * 60 * 1000;
     expect(Math.round((result.getTime() - today.getTime()) / dayMs)).toBe(5);
