@@ -1,0 +1,18 @@
+<div class="px-4 py-5">
+  <h1 class="display-5 fw-bold">Angular + Bootstrap Data-binding Demos</h1>
+  <p class="lead">A starter tour of Angular template binding primitives, ported to standalone Angular 22.</p>
+
+  <div class="row row-cols-1 row-cols-md-2 g-3 mt-3">
+    @for (demo of demos; track demo.path) {
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title h5">{{ demo.label }}</h2>
+            <p class="card-text text-muted">{{ demo.description }}</p>
+            <a class="btn btn-primary" [routerLink]="demo.path">Open demo</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

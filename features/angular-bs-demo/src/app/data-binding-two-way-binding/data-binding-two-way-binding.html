@@ -1,0 +1,18 @@
+<section>
+  <h1>Two-way Binding</h1>
+
+  <div class="mb-3">
+    <label class="form-label" for="keyword">Keyword</label>
+    <input
+      id="keyword"
+      type="text"
+      class="form-control"
+      [(ngModel)]="keyword"
+      (keyup.escape)="reset()"
+      placeholder="輸入關鍵字…"
+    />
+  </div>
+
+  <pre class="bg-light p-2">輸入關鍵字 : {{ keyword() }}</pre>
+  <pre class="bg-light p-2">目前字數 : {{ keyword().length }}</pre>
+</section>

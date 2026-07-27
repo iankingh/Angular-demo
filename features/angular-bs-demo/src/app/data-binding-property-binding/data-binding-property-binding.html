@@ -1,0 +1,16 @@
+<section>
+  <h1>Property Binding with Angular</h1>
+
+  <h2>Binding the <code>src</code> property of an image</h2>
+  <img [title]="title" [src]="itemImageUrl" alt="Phone" />
+
+  <h2>Using <code>bind-</code> syntax</h2>
+  <img bind-src="itemImageUrl" alt="Phone" />
+  <hr />
+
+  <h2>Binding to a property of a directive</h2>
+  <p [ngClass]="classes">
+    [ngClass] binding to the <code>classes</code> property makes this blue.
+  </p>
+  <hr />
+</section>
