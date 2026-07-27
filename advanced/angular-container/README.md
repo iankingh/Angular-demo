@@ -1,27 +1,40 @@
-# AngularContainer
+# angular-container
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+Angular 22 demo app served in a Dockerized nginx container on `0.0.0.0:4201`.
+
+Migrated from Angular 12.1.1 to Angular 22 — standalone components, zoneless change detection by default, and Vitest for unit tests. The original behavior (a single-page demo showing the `angular-container app is running!` message) is preserved.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+npm start
+```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Runs the dev server with `--host 0.0.0.0 --port 4201` (see `package.json`). Open <http://localhost:4201/>.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
+Build artifacts are emitted to `dist/angular-container/browser/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Unit tests
 
-## Running end-to-end tests
+```bash
+npm test
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Runs Vitest via the `@angular/build:unit-test` builder.
 
-## Further help
+## Docker (production)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The multi-stage `Dockerfile` builds the app with Node 22 and serves the static `dist/` output with nginx, listening on `0.0.0.0:4201` (see `nginx.conf`).
+
+```bash
+docker compose up --build
+# open http://localhost:4201/
+```
+
+The `docker-compose.yml` maps host port `4201` to the container's `4201`.

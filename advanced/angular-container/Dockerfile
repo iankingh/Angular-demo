@@ -1,33 +1,14 @@
-# # Dockerfile
-# # Set the base image.
-# FROM node:lts
-# # FROM node:10
-
-# # Create and define the node_modules's cache directory.
-# RUN mkdir /usr/src/cache
-# WORKDIR /usr/src/cache
-
-# # Install the application's dependencies into the node_modules's cache directory.
-# COPY package.json ./
-# COPY package-lock.json ./
-# RUN npm install
-
-# # Create and define the application's working directory.
-# RUN mkdir /usr/src/app
-# WORKDIR /usr/src/app
-
-
-FROM node:lts
-
-WORKDIR  /home/node/app
-
+# ---------- build stage ----------
+FROM node:22 AS build
+WORKDIR /app
 COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
 
-RUN npm install && npm install -g @angular/cli
-
+# ---------- runtime stage ----------
+FROM nginx:stable AS runtime
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/angular-container/browser /usr/share/nginx/html
 EXPOSE 4201
-
-CMD ["npm", "start"]
-
-
-
+CMD ["nginx", "-g", "daemon off;"]
