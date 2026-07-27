@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { UploadService } from '../../services/upload.service';
 
 @Component({
   selector: 'app-upload-image',
@@ -8,24 +8,32 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './upload-image.css',
 })
 export class UploadImage {
-  private readonly http = inject(HttpClient);
+  private readonly uploadService = inject(UploadService);
 
   readonly imageUrl = signal<string | null>(null);
   private file: File | null = null;
 
   preview(files: FileList | null): void {
-    if (!files || files.length === 0) return;
+    if (!files || files.length === 0) {
+      return;
+    }
     this.file = files[0];
     const reader = new FileReader();
-    reader.onload = () => this.imageUrl.set(reader.result as string);
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === 'string') {
+        this.imageUrl.set(result);
+      }
+    };
     reader.readAsDataURL(this.file);
   }
 
   uploadImage(): void {
-    if (!this.imageUrl()) return;
-    const formData = new FormData();
-    formData.append('img', this.imageUrl() as string);
-    this.http.post('http://localhost:8080/upload/base64', formData).subscribe({
+    const image = this.imageUrl();
+    if (!image) {
+      return;
+    }
+    this.uploadService.upload(image).subscribe({
       next: () => alert('Upload OK'),
       error: () => alert('Upload failed'),
     });
