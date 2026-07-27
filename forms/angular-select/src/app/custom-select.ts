@@ -35,6 +35,7 @@ export class CustomSelect implements ControlValueAccessor, AfterViewInit {
   @ViewChild('select') private selectRef?: ElementRef<HTMLSelectElement>;
 
   selected = '';
+  disabled = false;
   private change: (value: string) => void = () => {};
   private touched: () => void = () => {};
 
@@ -65,12 +66,22 @@ export class CustomSelect implements ControlValueAccessor, AfterViewInit {
     this.touched = fn;
   }
 
-  setDisabledState(): void {}
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    this.syncDisabled();
+  }
 
   private syncSelectValue(): void {
     const select = this.selectRef?.nativeElement;
     if (select) {
       select.value = this.selected;
+    }
+  }
+
+  private syncDisabled(): void {
+    const select = this.selectRef?.nativeElement;
+    if (select) {
+      select.disabled = this.disabled;
     }
   }
 }
