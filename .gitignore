@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────
+# Angular Demo Collection — root .gitignore
+# Applies to all sub-projects (forms/, routing/, http/, …).
+# ─────────────────────────────────────────────────────────────
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.pnpm-store/
+
+# Angular CLI
+.angular/
+dist/
+out/
+tmp/
+.tmp/
+*.tsbuildinfo
+
+# Build / compiler artifacts
+build/
+*.tgz
+
+# Testing / coverage
+coverage/
+.cypress/screenshots/
+.cypress/videos/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+
+# IDE / editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
