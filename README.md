@@ -17,34 +17,32 @@ Angular-demo/
 
 ## 子專案 / Projects
 
-All sub-projects run **Angular 22**, standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`). Run any of them with `ng serve`; verify with `ng build` + `ng test`.
+All sub-projects run **Angular 22**, standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`). Each category folder contains exactly **one** Angular project whose demos are exposed as routes. Run any of them with `ng serve`; verify with `ng build` + `ng test`.
 
 | Category | Project | Tests | Description |
 |----------|---------|-------|-------------|
-| advanced | `angular-advanced` | 17 | Feature forms: template-driven + reactive with custom validators (pilot) |
-| advanced | `angular-container` | 4 | Dockerized app served on `0.0.0.0:4201` (nginx) |
-| forms | `angular-hero-form` | 15 | Template-driven Hero form (official tutorial) |
-| forms | `angular-select` | 7 | Custom select via `ControlValueAccessor` + `[(ngModel)]` |
-| forms | `angular-select2` | 9 | Material select with disabled states |
+| advanced | `advanced-demo` | 17 | Hero form (template-driven + reactive + custom validators); Dockerized via nginx (`Dockerfile`/`nginx.conf`) |
+| forms | `forms-demo` | 27 | Hero form + custom select via `ControlValueAccessor` + Material select with disabled states |
 | http | `angular-httpclient` | 21 | HttpClient CRUD against a JSON-server backend (mocked in tests) |
-| material-ui | `angular-material-ui` | 13 | Material datepicker (min/max) + slider/icons |
-| material-ui | `angular-material-ui2` | 10 | Material button-overview variants |
-| material-ui | `angular-material-ui3` | 9 | Material button-types (HammerJS removed) |
-| routing | `angular-routing-breadcrumbs` | 12 | Breadcrumb navigation built from `ActivatedRouteSnapshot` |
-| routing | `angular-routing-loading` | 10 | Lazy loading + delay resolver + loading spinner |
+| material-ui | `material-demo` | 27 | Material datepicker (min/max) + slider/icons + button overview + button types |
+| routing | `routing-demo` | 15 | Breadcrumb navigation (`ActivatedRouteSnapshot`) + lazy loading with delay resolver + loading spinner |
 | testing | `angular-e2e-lab` | 5 (+3 E2E) | App + Cypress 15 E2E (`npm run e2e`) |
-| features | `angular-bs-demo` | 23 | Bootstrap 5 + data-binding demos |
-| features | `angular-images-up` | 9 | Image upload + `FileReader` preview |
-| features | `qr-code-scan` | 12 | QR code scanner (`@zxing/browser`); `scaner`→`scanner` fixed |
-| features | `stopwatch` | 14 | Signal-based stopwatch (start/pause/reset/lap) |
+| features | `features-demo` | 54 | Bootstrap 5 data-binding demos + image upload + QR scanner (`@zxing/browser`) + signal stopwatch |
 
-**Total: 190 Vitest unit tests + 3 Cypress E2E tests, all green across 16 sub-projects.**
+**Total: 166 Vitest unit tests + 3 Cypress E2E tests, all green across 7 projects.**
 
 ### 重命名記錄 / Renames (clean-code)
 - `angular-selec2` → `angular-select2` (fix typo)
 - `dct-110008-stopwatch-starter-qbcxwi` → `stopwatch`
 - `angular-routing-breadcrumbs-1dkwck` → `angular-routing-breadcrumbs`
 - `qr-code-scaner` component → `qr-code-scanner` (fix typo)
+
+### 合併記錄 / Merge (one project per category)
+- `angular-advanced` + `angular-container` → `advanced-demo` (Docker artifacts kept at project root)
+- `angular-hero-form` + `angular-select` + `angular-select2` → `forms-demo`
+- `angular-material-ui` + `angular-material-ui2` + `angular-material-ui3` → `material-demo`
+- `angular-routing-breadcrumbs` + `angular-routing-loading` → `routing-demo`
+- `angular-bs-demo` + `angular-images-up` + `qr-code-scan` + `stopwatch` → `features-demo` (added `@zxing/browser` + `@zxing/library`)
 
 ## 快速開始 / Getting Started
 
@@ -54,7 +52,7 @@ All sub-projects run **Angular 22**, standalone components, zoneless change dete
 
 ### Run a project
 ```bash
-cd forms/angular-hero-form   # pick any project above
+cd forms/forms-demo   # pick any project above
 npm install
 ng serve                     # http://localhost:4200
 ```
