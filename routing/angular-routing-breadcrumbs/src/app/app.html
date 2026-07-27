@@ -7,7 +7,7 @@
 <hr />
 
 <nav class="breadcrumbs">
-  @for (crumb of crumbs; track crumb.url; let last = $last) {
+  @for (crumb of crumbs(); track crumb.url; let last = $last) {
     @if (last) {
       <span>{{ crumb.label }}</span>
     } @else {

@@ -36,14 +36,14 @@ describe('App navigation', () => {
 
     await router.navigate(['/page-a']);
     await fixture.whenStable();
-    expect(fixture.componentInstance.crumbs.map((c) => c.label)).toEqual([
+    expect(fixture.componentInstance.crumbs().map((c) => c.label)).toEqual([
       'Home',
       'Page A',
     ]);
 
     await router.navigate(['/page-b']);
     await fixture.whenStable();
-    expect(fixture.componentInstance.crumbs.map((c) => c.label)).toEqual([
+    expect(fixture.componentInstance.crumbs().map((c) => c.label)).toEqual([
       'Home',
       'Page B',
     ]);
