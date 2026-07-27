@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-hero-form": {
+    "forms-demo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-hero-form:build:production"
+              "buildTarget": "forms-demo:build:production"
             },
             "development": {
-              "buildTarget": "angular-hero-form:build:development"
+              "buildTarget": "forms-demo:build:development"
             }
           },
           "defaultConfiguration": "development"

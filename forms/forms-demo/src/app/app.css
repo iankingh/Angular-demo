@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  font-family: system-ui, sans-serif;
+}
+
+.toolbar {
+  padding: 1rem;
+  background: #1976d2;
+  color: #fff;
+}
+
+.toolbar nav a {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.toolbar nav a.active {
+  text-decoration: underline;
+}
+
+.content {
+  padding: 1rem;
+}

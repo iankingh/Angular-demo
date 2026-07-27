@@ -12,17 +12,17 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('creates the app shell', () => {
+  it('creates the shell', () => {
     const fixture = TestBed.createComponent(App);
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('renders the heading', async () => {
+  it('renders the nav with links to each demo', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Angular Select 2',
-    );
+    const html = fixture.nativeElement as HTMLElement;
+    expect(html.querySelector('a[href="/hero-form"]')).toBeTruthy();
+    expect(html.querySelector('a[href="/custom-select"]')).toBeTruthy();
+    expect(html.querySelector('a[href="/select-disabled"]')).toBeTruthy();
   });
 });
