@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { App, formatTime } from './app';
+import { App } from './app';
+import { formatTime } from './time-format';
 
 describe('formatTime', () => {
   it('formats zero as 00:00.00', () => {

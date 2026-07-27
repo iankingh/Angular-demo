@@ -4,14 +4,10 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { formatTime } from './time-format';
+import type { Lap } from './lap.model';
 
 const TICK_MS = 10;
-const MS_PER_SECOND = 1000;
-
-export type Lap = {
-  index: number;
-  time: string;
-};
 
 @Component({
   selector: 'app-root',
@@ -29,6 +25,10 @@ export class App {
   readonly laps = signal<Lap[]>([]);
 
   private timer: ReturnType<typeof setInterval> | null = null;
+
+  constructor() {
+    this.destroyRef.onDestroy(() => this.clearTimer());
+  }
 
   /** Formatted elapsed time as mm:ss.cs (centiseconds). */
   get display(): string {
@@ -53,7 +53,6 @@ export class App {
     this.timer = setInterval(() => {
       this.elapsedMs.update((ms) => ms + TICK_MS);
     }, TICK_MS);
-    this.destroyRef.onDestroy(() => this.clearTimer());
   }
 
   pause(): void {
@@ -87,17 +86,4 @@ export class App {
       this.timer = null;
     }
   }
-}
-
-/** Format milliseconds as mm:ss.cs (centiseconds, two digits). */
-export function formatTime(ms: number): string {
-  const totalSeconds = Math.floor(ms / MS_PER_SECOND);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  const centiseconds = Math.floor((ms % MS_PER_SECOND) / 10);
-  return `${pad(minutes)}:${pad(seconds)}.${pad(centiseconds)}`;
-}
-
-function pad(value: number): string {
-  return value.toString().padStart(2, '0');
 }
