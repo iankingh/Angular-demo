@@ -12,17 +12,16 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('creates the app shell', () => {
-    const fixture = TestBed.createComponent(App);
-    expect(fixture.componentInstance).toBeTruthy();
+  it('creates the shell', () => {
+    expect(TestBed.createComponent(App).componentInstance).toBeTruthy();
   });
 
-  it('renders the heading', async () => {
+  it('renders nav links to each demo', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Angular Material UI3',
-    );
+    const html = fixture.nativeElement as HTMLElement;
+    expect(html.querySelector('a[href="/datepicker"]')).toBeTruthy();
+    expect(html.querySelector('a[href="/button-overview"]')).toBeTruthy();
+    expect(html.querySelector('a[href="/button-types"]')).toBeTruthy();
   });
 });

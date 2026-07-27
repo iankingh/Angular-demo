@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { routes } from './app.routes';
+import { routes } from '../app.routes';
 import { ButtonTypes } from './button-types';
 
 describe('ButtonTypes', () => {

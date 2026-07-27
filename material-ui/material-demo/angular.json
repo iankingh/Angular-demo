@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-material-ui2": {
+    "material-demo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-material-ui2:build:production"
+              "buildTarget": "material-demo:build:production"
             },
             "development": {
-              "buildTarget": "angular-material-ui2:build:development"
+              "buildTarget": "material-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
