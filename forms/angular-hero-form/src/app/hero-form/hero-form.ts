@@ -20,10 +20,6 @@ export class HeroForm {
     this.submitted.set(true);
   }
 
-  get diagnostic(): string {
-    return JSON.stringify(this.model);
-  }
-
   newHero(): void {
     this.model = new Hero(42, '', '');
   }

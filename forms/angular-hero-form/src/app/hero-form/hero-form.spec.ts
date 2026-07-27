@@ -113,12 +113,6 @@ describe('HeroForm', () => {
     expect(fixture.componentInstance.model.name).toBe('');
     expect(fixture.componentInstance.model.power).toBe('');
   });
-
-  it('diagnostic returns JSON for the current model', () => {
-    const fixture = TestBed.createComponent(HeroForm);
-    const parsed = JSON.parse(fixture.componentInstance.diagnostic);
-    expect(parsed.name).toBe('Dr IQ');
-  });
 });
 
 describe('Hero model', () => {
