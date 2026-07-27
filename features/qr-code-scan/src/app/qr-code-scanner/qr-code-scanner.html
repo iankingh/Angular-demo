@@ -1,0 +1,41 @@
+<section class="scanner" aria-label="QR code scanner">
+  <div class="preview">
+    <video #preview playsinline></video>
+  </div>
+
+  <div class="actions">
+    @if (scanning()) {
+      <button type="button" (click)="stopScan()">Stop</button>
+    } @else {
+      <button type="button" (click)="startScan()">Start</button>
+    }
+    <button type="button" (click)="clearResult()" [disabled]="!qrResultString()">Clear result</button>
+    <button type="button" (click)="toggleTorch()" [disabled]="!torchAvailable()">
+      Torch: {{ torchEnabled() ? 'on' : 'off' }}
+    </button>
+    <button type="button" (click)="toggleTryHarder()">
+      Try harder: {{ tryHarder() ? 'on' : 'off' }}
+    </button>
+  </div>
+
+  <label>
+    Camera:
+    <select
+      [value]="deviceSelected()"
+      (change)="onDeviceSelectChange($any($event.target).value)"
+      [disabled]="!availableDevices().length"
+    >
+      @for (device of availableDevices(); track device.deviceId) {
+        <option [value]="device.deviceId">{{ device.label }}</option>
+      }
+    </select>
+  </label>
+
+  @if (hasPermission() === false) {
+    <p class="error">Camera permission denied or unavailable.</p>
+  }
+
+  @if (qrResultString()) {
+    <output class="result">Scanned: {{ qrResultString() }}</output>
+  }
+</section>
