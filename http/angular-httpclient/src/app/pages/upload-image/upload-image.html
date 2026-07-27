@@ -1,0 +1,9 @@
+<h3>Upload Image</h3>
+
+@if (imageUrl()) {
+  <img height="200" [src]="imageUrl()" alt="preview" />
+}
+
+<input #fileInput type="file" accept=".jpg,.jpeg,.png" (change)="preview(fileInput.files)" />
+<button type="button" (click)="fileInput.click()">Choose file</button>
+<button type="button" (click)="uploadImage()">Upload</button>

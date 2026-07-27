@@ -1,0 +1,11 @@
+.employee-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.employee-table th,
+.employee-table td {
+  border: 1px solid #ccc;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}

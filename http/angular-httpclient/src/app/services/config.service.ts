@@ -1,17 +1,14 @@
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Config } from '../models/config';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ConfigService {
+  private readonly http = inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) {
-
-   }
-
-   getConfig(){
-    return this.httpClient.get('http://localhost:3000/config');
-   }
-   
+  /** Fetch the demo config from the JSON server. */
+  getConfig(): Observable<Config> {
+    return this.http.get<Config>('http://localhost:3000/config');
+  }
 }
