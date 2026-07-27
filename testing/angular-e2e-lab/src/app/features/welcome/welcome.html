@@ -1,0 +1,21 @@
+<section class="welcome">
+  <h1>Welcome to {{ host }}!</h1>
+  <p class="lead">
+    This is the demo app exercised by the Cypress E2E specs.
+  </p>
+
+  <a
+    class="card"
+    href="https://angular.io/tutorial"
+    target="_blank"
+    rel="noopener"
+  >
+    <span>Learn Angular</span>
+  </a>
+
+  <div class="counter">
+    <button type="button" (click)="increment()" aria-label="increment">
+      Count is {{ count() }}
+    </button>
+  </div>
+</section>
