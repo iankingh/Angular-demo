@@ -1,0 +1,39 @@
+<div class="stopwatch">
+  <div class="display">{{ display }}</div>
+
+  <div class="controls">
+    <button type="button" (click)="start()" [disabled]="running()">Start</button>
+    <button type="button" (click)="pause()" [disabled]="!running()">Pause</button>
+    <button type="button" (click)="reset()">Reset</button>
+    <button type="button" (click)="lap()" [disabled]="!running()">Lap</button>
+  </div>
+
+  <div class="laps">
+    <section>
+      <h4>All laps</h4>
+      <ul>
+        @for (lap of laps(); track lap.index) {
+          <li>Lap {{ lap.index }}: {{ lap.time }}</li>
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h4>Odd laps</h4>
+      <ul>
+        @for (lap of oddLaps; track lap.index) {
+          <li>Lap {{ lap.index }}: {{ lap.time }}</li>
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h4>Even laps</h4>
+      <ul>
+        @for (lap of evenLaps; track lap.index) {
+          <li>Lap {{ lap.index }}: {{ lap.time }}</li>
+        }
+      </ul>
+    </section>
+  </div>
+</div>
