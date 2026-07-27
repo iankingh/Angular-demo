@@ -1,67 +1,59 @@
 # AngularMaterialUi
-### **Angular** **Material 安裝**
 
-**安裝 Angular Material 指令如下**
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
 
-```bash
-npm install --save @angular/material @angular/cdk
+## Development server
 
-or
-
-ng add @angular/material
-```
-
-### **建立 MaterialsUiModule**
+To start a local development server, run:
 
 ```bash
-ng g module MaterialsUi --module app
+ng serve
 ```
 
-### **將元件加入 MaterialsUiModule**
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-//要記得手動加入
-
-import { MatSliderModule } from '@angular/material/slider';
-
-…
-
-@NgModule ({....
-  imports: [...,
-  MatSliderModule,
-…],
-	exports: [
-  MatSliderModule,
-  ]
-})
+ng generate component component-name
 ```
 
-### **建立 在頁面上加入 元件**
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+ng generate --help
 ```
 
-顯示如下圖 你會在頁面上看到這個 Material 滑塊元件。
+## Building
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45df9c94-508d-43d4-8204-610d119d3b9f/Untitled.png)
+To build the project run:
 
-### **mat-flat-button顏色**
+```bash
+ng build
+```
 
-[Angular (forked) - StackBlitz](https://stackblitz.com/edit/angular-xzbxx4?file=app%2Fbutton-types-example.html)
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-### 參考:
+## Running unit tests
 
-[Components | Angular Material](https://material.angular.io/components/categories)
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-[Essential JS 2 for Angular (syncfusion.com)](https://ej2.syncfusion.com/angular/demos/#/material/uploader/image-preview)
+```bash
+ng test
+```
 
-[Angular Material Datepicker Format (concretepage.com)](https://www.concretepage.com/angular-material/angular-material-datepicker-format)
+## Running end-to-end tests
 
-[Angular UI：Angular Material2 | Jonny Huang 的學習筆記 (jonny-huang.github.io)](https://jonny-huang.github.io/angular/training/07_angular_ui-material2/)
+For end-to-end (e2e) testing, run:
 
-[Angular Material - DatePicker. Angular Material 的中文資料真的很少QQ… | by itsems | itsems_frontend | Medium](https://medium.com/itsems-frontend/angular-material-datepicker-72c1a1a09d85)
+```bash
+ng e2e
+```
 
-[[Angular Material完全攻略] Day 01 - 開始 & 簡介 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天 (ithome.com.tw)](https://ithelp.ithome.com.tw/articles/10192187)
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-[[Angular Material完全攻略] Day 14 - 打造問卷頁面(6) - Checkbox、Radio和Slide Toggle - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天 (ithome.com.tw)](https://ithelp.ithome.com.tw/articles/10195230)
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
