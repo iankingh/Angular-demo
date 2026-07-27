@@ -1,8 +1,8 @@
-# angular-container
+# advanced-demo (Docker deployment)
 
 Angular 22 demo app served in a Dockerized nginx container on `0.0.0.0:4201`.
 
-Migrated from Angular 12.1.1 to Angular 22 — standalone components, zoneless change detection by default, and Vitest for unit tests. The original behavior (a single-page demo showing the `angular-container app is running!` message) is preserved.
+Migrated from Angular 12.1.1 to Angular 22 — standalone components, zoneless change detection by default, and Vitest for unit tests. The original behavior (a single-page demo showing the `advanced-demo app is running!` message) is preserved.
 
 ## Development server
 
@@ -18,7 +18,7 @@ Runs the dev server with `--host 0.0.0.0 --port 4201` (see `package.json`). Open
 npm run build
 ```
 
-Build artifacts are emitted to `dist/angular-container/browser/`.
+Build artifacts are emitted to `dist/advanced-demo/browser/`.
 
 ## Unit tests
 
