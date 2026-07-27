@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-routing-breadcrumbs": {
+    "routing-demo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-routing-breadcrumbs:build:production"
+              "buildTarget": "routing-demo:build:production"
             },
             "development": {
-              "buildTarget": "angular-routing-breadcrumbs:build:development"
+              "buildTarget": "routing-demo:build:development"
             }
           },
           "defaultConfiguration": "development"

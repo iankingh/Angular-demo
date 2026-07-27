@@ -2,15 +2,15 @@ import { Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
-import { BreadcrumbItem, BreadcrumbService } from './breadcrumb';
+import { BreadcrumbItem, BreadcrumbService } from '../breadcrumb';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-breadcrumbs-demo',
   imports: [RouterOutlet, RouterLink],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './breadcrumbs-demo.html',
+  styleUrl: './breadcrumbs-demo.css',
 })
-export class App {
+export class BreadcrumbsDemo {
   private readonly router = inject(Router);
   private readonly breadcrumbService = inject(BreadcrumbService);
 

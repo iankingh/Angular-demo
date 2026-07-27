@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { routes } from '../app.routes';
+import { routes } from '../../app.routes';
 import { PageB } from './page-b';
 
 describe('PageB', () => {

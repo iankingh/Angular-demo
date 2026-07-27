@@ -3,12 +3,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, NavigationStart, Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-loading-demo',
   imports: [RouterOutlet, RouterLink],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './loading-demo.html',
+  styleUrl: './loading-demo.css',
 })
-export class App {
+export class LoadingDemo {
   /** True while a navigation (lazy chunk + resolver) is in flight. */
   readonly loading = signal(false);
 

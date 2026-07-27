@@ -16,10 +16,13 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('renders navigation links to Home, Page A and Page B', () => {
+  it('renders navigation links to both feature areas', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const links = fixture.nativeElement.querySelectorAll('nav:first-of-type a');
-    expect(links.length).toBe(3);
+    await fixture.whenStable();
+    const links = fixture.nativeElement.querySelectorAll('header nav a');
+    const hrefs = Array.from(links).map((a) => (a as HTMLAnchorElement).getAttribute('href'));
+    expect(hrefs).toContain('/breadcrumbs');
+    expect(hrefs).toContain('/loading');
   });
 });
