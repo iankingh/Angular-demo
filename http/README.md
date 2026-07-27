@@ -1,59 +1,25 @@
-# AngularHttpclient
+# angular-httpclient
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+Angular 22 HttpClient 示範 — 對 JSON-server 後端的 Employee CRUD、config 取得與圖片上傳。元件注入 `RestApiService` / `ConfigService` / `UploadService`；API base URL 集中於 `api-urls.ts`。standalone / zoneless / Vitest（HTTP 以 `HttpTestingController` 模擬）。
 
-## Development server
+## Routes / Pages
+- `/employees-list` — 員工列表（含刪除）
+- `/create-employee` — 新增員工
+- `/employee-edit/:id` — 編輯員工
+- `/config` — 取得 demo config
+- `/uploadimage` — 圖片上傳（base64）
 
-To start a local development server, run:
+## Backend
+員工/config 走 `http://localhost:3000`（JSON-server）；上傳走 `http://localhost:8080`。本機需自行啟動 JSON-server 才能跑通真實流程；單元測試已用 mock，不需後端。
 
+## Run
 ```bash
-ng serve
+npm install
+ng serve   # http://localhost:4200
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
+## Build & test
 ```bash
 ng build
+ng test    # Vitest, must be all green
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
