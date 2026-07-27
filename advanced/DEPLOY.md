@@ -2,7 +2,7 @@
 
 Angular 22 demo app served in a Dockerized nginx container on `0.0.0.0:4201`.
 
-Migrated from Angular 12.1.1 to Angular 22 — standalone components, zoneless change detection by default, and Vitest for unit tests. The original behavior (a single-page demo showing the `advanced-demo app is running!` message) is preserved.
+The container builds and serves the `advanced-demo` app (the Hero form demo described in [`README.md`](./README.md)) as a static SPA. Production build uses Angular 22, standalone components, zoneless change detection, and Vitest for unit tests.
 
 ## Development server
 

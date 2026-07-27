@@ -1,22 +1,27 @@
 # material-demo
 
-Angular 22 + Angular Material 示範 — datepicker（min/max 驗證）、icons + slider、button overview、button types。standalone / zoneless / Vitest。
+Angular Material UI 示範集。用四個獨立 demo 展示常見 Material 元件的用法：datepicker 的日期區間驗證、icon 與 slider、以及按鈕的兩種示範。全部為 standalone 匯入（已移除舊的 `material-module.ts`），zoneless / Vitest。
 
-## Routes / Demos
+## 示範重點 / Highlights
+- **Datepicker + 日期驗證** — `min`/`max` 限制可選日期，並用 `provideNativeDateAdapter()` 提供 `DateAdapter`（`src/app/datepicker/datepicker-min-max-example.ts`）。
+- **Icon 與 Slider** — `MatIconModule` 顯示 icon、`MatSliderModule` 滑桿綁定初始值（`src/app/icons-and-slider/`）。
+- **Button overview / types** — `MatButtonModule` 的基本按鈕與 raised/stroked/flat/fab/icon 等 varieties（`src/app/button-overview/`、`src/app/button-types/`）。
+- **全域主題** — `src/styles.css` 匯入 Material prebuilt theme（azure-blue）；`app.config.ts` 提供 `provideAnimationsAsync()`。
+
+## 路由 / Routes
 - `/datepicker` — Datepicker 搭配 min/max 驗證
 - `/icons-and-slider` — Icon 顏色與基本 slider
 - `/button-overview` — Material 按鈕 overview 變體
 - `/button-types` — Material 按鈕 varieties
-- `''` 重導到 `/datepicker`
 
-## Run
+## 執行 / Run
 ```bash
 npm install
-ng serve   # http://localhost:4200
+ng serve      # http://localhost:4200
 ```
 
-## Build & test
+## 建置與測試 / Build & test
 ```bash
-ng build
-ng test    # Vitest, must be all green
+ng build      # production build
+ng test       # Vitest，必須全綠（27 tests）
 ```
