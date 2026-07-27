@@ -1,0 +1,21 @@
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+/* Success styling — ported from the original Material 8 demo. */
+.mat-mdc-button.success:hover,
+.mat-mdc-outlined-button.success:hover {
+  background-color: #f0fff3;
+}
+
+.mat-mdc-unelevated-button.success,
+.mat-mdc-fab.success,
+.mat-mdc-mini-fab.success {
+  color: #f0fff3;
+  background-color: #155724;
+}
+
+.mat-mdc-icon-button.success {
+  color: #155724;
+}

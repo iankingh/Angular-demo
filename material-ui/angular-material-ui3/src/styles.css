@@ -1,11 +1,14 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* Angular Material theme */
+@import '@angular/material/prebuilt-themes/azure-blue.css';
 
-body { 
-  font-family: Roboto, Arial, sans-serif;
+html,
+body {
   margin: 0;
+  padding: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.basic-container {
+.demo-container {
   padding: 30px;
 }
 
