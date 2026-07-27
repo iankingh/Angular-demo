@@ -1,5 +1,6 @@
 import { Component, inject, signal, viewChild } from '@angular/core';
 import { BarcodeFormat } from '@zxing/browser';
+import type { IScannerControls } from '@zxing/browser';
 import { QrScannerAdapter } from './qr-scanner.adapter';
 
 @Component({
@@ -10,6 +11,7 @@ import { QrScannerAdapter } from './qr-scanner.adapter';
 export class QrCodeScanner {
   private readonly adapter = inject(QrScannerAdapter);
   private readonly preview = viewChild.required<HTMLVideoElement>('preview');
+  private controls: IScannerControls | null = null;
 
   readonly formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
@@ -46,6 +48,7 @@ export class QrCodeScanner {
         (text) => this.onCodeResult(text),
       );
     } catch {
+      // Typically a camera-permission denial; intentionally swallowed rather than rethrown.
       this.hasPermission.set(false);
       this.scanning.set(false);
     }
@@ -73,7 +76,7 @@ export class QrCodeScanner {
   }
 
   onTorchCompatible(isCompatible: boolean): void {
-    this.torchAvailable.set(isCompatible || false);
+    this.torchAvailable.set(isCompatible);
   }
 
   toggleTorch(): void {
@@ -87,6 +90,4 @@ export class QrCodeScanner {
   toggleTryHarder(): void {
     this.tryHarder.update((value) => !value);
   }
-
-  private controls: import('@zxing/browser').IScannerControls | null = null;
 }
