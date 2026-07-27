@@ -17,19 +17,19 @@ Angular-demo/
 
 ## 子專案 / Projects
 
-All sub-projects run **Angular 22**, standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`). Each category folder contains exactly **one** Angular project whose demos are exposed as routes. Run any of them with `ng serve`; verify with `ng build` + `ng test`.
+Each top-level category folder (`forms/`, `routing/`, `material-ui/`, `http/`, `advanced/`, `features/`) **is itself** one Angular 22 project; `testing/angular-e2e-lab/` is the lone subfolder project. All run standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`), with demos exposed as routes. Run any of them with `ng serve`; verify with `ng build` + `ng test`.
 
 | Category | Project | Tests | Description |
 |----------|---------|-------|-------------|
 | advanced | `advanced-demo` | 17 | Hero form (template-driven + reactive + custom validators); Dockerized via nginx (`Dockerfile`/`nginx.conf`) |
-| forms | `forms-demo` | 27 | Hero form + custom select via `ControlValueAccessor` + Material select with disabled states |
-| http | `angular-httpclient` | 21 | HttpClient CRUD against a JSON-server backend (mocked in tests) |
+| forms | `forms-demo` | 31 | Hero form + custom select via `ControlValueAccessor` + Material select with disabled states |
+| http | `angular-httpclient` | 23 | HttpClient CRUD against a JSON-server backend (mocked in tests) |
 | material-ui | `material-demo` | 27 | Material datepicker (min/max) + slider/icons + button overview + button types |
-| routing | `routing-demo` | 15 | Breadcrumb navigation (`ActivatedRouteSnapshot`) + lazy loading with delay resolver + loading spinner |
+| routing | `routing-demo` | 21 | Breadcrumb navigation (`ActivatedRouteSnapshot`) + lazy loading with delay resolver + loading spinner |
 | testing | `angular-e2e-lab` | 5 (+3 E2E) | App + Cypress 15 E2E (`npm run e2e`) |
 | features | `features-demo` | 54 | Bootstrap 5 data-binding demos + image upload + QR scanner (`@zxing/browser`) + signal stopwatch |
 
-**Total: 166 Vitest unit tests + 3 Cypress E2E tests, all green across 7 projects.**
+**Total: 178 Vitest unit tests + 3 Cypress E2E tests, all green across 7 projects.**
 
 ### 重命名記錄 / Renames (clean-code)
 - `angular-selec2` → `angular-select2` (fix typo)
@@ -52,7 +52,7 @@ All sub-projects run **Angular 22**, standalone components, zoneless change dete
 
 ### Run a project
 ```bash
-cd forms/forms-demo   # pick any project above
+cd forms   # each category folder is one project; pick any above
 npm install
 ng serve                     # http://localhost:4200
 ```
