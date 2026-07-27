@@ -23,7 +23,7 @@ All sub-projects run **Angular 22**, standalone components, zoneless change dete
 |----------|---------|-------|-------------|
 | advanced | `angular-advanced` | 17 | Feature forms: template-driven + reactive with custom validators (pilot) |
 | advanced | `angular-container` | 4 | Dockerized app served on `0.0.0.0:4201` (nginx) |
-| forms | `angular-hero-form` | 16 | Template-driven Hero form (official tutorial) |
+| forms | `angular-hero-form` | 15 | Template-driven Hero form (official tutorial) |
 | forms | `angular-select` | 7 | Custom select via `ControlValueAccessor` + `[(ngModel)]` |
 | forms | `angular-select2` | 9 | Material select with disabled states |
 | http | `angular-httpclient` | 21 | HttpClient CRUD against a JSON-server backend (mocked in tests) |
@@ -38,7 +38,7 @@ All sub-projects run **Angular 22**, standalone components, zoneless change dete
 | features | `qr-code-scan` | 12 | QR code scanner (`@zxing/browser`); `scaner`→`scanner` fixed |
 | features | `stopwatch` | 14 | Signal-based stopwatch (start/pause/reset/lap) |
 
-**Total: 191 Vitest unit tests + 3 Cypress E2E tests, all green across 16 sub-projects.**
+**Total: 190 Vitest unit tests + 3 Cypress E2E tests, all green across 16 sub-projects.**
 
 ### 重命名記錄 / Renames (clean-code)
 - `angular-selec2` → `angular-select2` (fix typo)
@@ -80,6 +80,15 @@ npm run e2e    # boots ng serve on :4200 then runs Cypress
 - HammerJS removed from `angular-material-ui3` (Material 19+ handles touch natively).
 - Per-project **Vitest** unit tests with meaningful coverage (not just create-tests); HTTP services tested via `HttpTestingController`.
 - Migration recipe documented in [`MIGRATION-GUIDE.md`](./MIGRATION-GUIDE.md).
+
+### Clean-code pass
+- RxJS 訂閱洩漏修復：`router.events` 與 HTTP 訂閱改用 `takeUntilDestroyed()`。
+- `RestApiService.handleError` 的 `this` 綁定問題修正（改箭頭函式屬性）；5 處重複 `retry+catchError` 抽為共用 `withRetry()` operator。
+- API base URL 集中至 `api-urls.ts`；`upload-image` 抽出 `UploadService`（component 不再直接 inject HttpClient）。
+- 移除非空 `!` 斷言與多餘 `as` 斷言，改顯式 null 檢查與型別守衛。
+- `stopwatch` 抽出 `time-format.ts`/`lap.model.ts`（單一職責）；`destroyRef.onDestroy` 移至建構式只註冊一次。
+- 移除 scaffold 殘留死碼（未使用 `title` signal、debug-only `diagnostic` getter）。
+- `custom-select` 的 `setDisabledState` 補齊參數與實作（CVA 契約）。
 
 ## CI
 `.github/workflows/ci.yml` runs `ng build` + `ng test` for every sub-project on push/PR.
