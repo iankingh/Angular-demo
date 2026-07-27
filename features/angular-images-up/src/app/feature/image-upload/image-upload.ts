@@ -22,14 +22,19 @@ export class ImageUpload {
       return;
     }
 
-    if (!file.type.match(/image\//)) {
+    if (!file.type.startsWith('image/')) {
       this.errorMessage.set('Please select an image file.');
       this.previewUrl.set(null);
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = () => this.previewUrl.set(reader.result as string);
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === 'string') {
+        this.previewUrl.set(result);
+      }
+    };
     reader.readAsDataURL(file);
   }
 
