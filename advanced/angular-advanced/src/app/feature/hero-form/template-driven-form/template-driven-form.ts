@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
-import { Hero, Gender } from '../../../models/hero';
+import { Hero, GenderOption } from '../../../models/hero';
 import { HeroValidateDirective } from '../validators/hero-validate.directive';
 import { CrossFieldValidateDirective } from '../validators/cross-field-validate.directive';
-
-interface GenderOption {
-  id: string;
-  text: string;
-  value: Gender;
-}
 
 @Component({
   selector: 'app-template-driven-form',
