@@ -1,10 +1,13 @@
-// Shared ESLint flat config base for Angular 19 sub-projects.
+// Shared ESLint flat config base for Angular 22 sub-projects.
+// NOTE: This is an OPTIONAL shared reference config — it is not currently
+// imported/extended by any sub-project's eslint.config.js. Kept for reference only.
+//
 // Sub-projects install: eslint, @angular-eslint/eslint-plugin,
 // @angular-eslint/eslint-plugin-template, @angular-eslint/template-parser,
-// typescript-eslint, and extend this via customConfig.
+// typescript-eslint, and may extend this via customConfig.
 //
 // This root config provides the common rules; each project's eslint.config.js
-// imports and merges `baseConfig` from here, then adds its own files/globs.
+// could import and merge `baseConfig` from here, then add its own files/globs.
 import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 

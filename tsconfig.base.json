@@ -1,5 +1,7 @@
-// Shared TypeScript base for all Angular 19 sub-projects.
-// Each sub-project's tsconfig.json extends this via "extends".
+// Shared TypeScript base for Angular 22 sub-projects.
+// NOTE: This is an OPTIONAL shared reference config — it is not currently
+// extended/wired by any sub-project's tsconfig.json. Kept for reference only.
+// Each sub-project's tsconfig.json may extend this via "extends" if desired.
 {
   "compilerOptions": {
     "strict": true,

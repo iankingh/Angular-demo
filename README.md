@@ -17,7 +17,7 @@ Angular-demo/
 
 ## 子專案 / Projects
 
-Each top-level category folder (`forms/`, `routing/`, `material-ui/`, `http/`, `advanced/`, `features/`) **is itself** one Angular 22 project; `testing/angular-e2e-lab/` is the lone subfolder project. All run standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`), with demos exposed as routes. Run any of them with `ng serve`; verify with `ng build` + `ng test`.
+Each top-level category folder (`forms/`, `routing/`, `material-ui/`, `http/`, `advanced/`, `features/`, `testing/`) **is itself** one Angular 22 project. All run standalone components, zoneless change detection, and **Vitest** unit tests (via `@angular/build:unit-test`), with demos exposed as routes. Run any of them with `ng serve`; verify with `ng build` + `ng test`.
 
 | Category | Project | Tests | Description |
 |----------|---------|-------|-------------|
@@ -63,9 +63,9 @@ ng build   # production build, must pass
 ng test    # Vitest, must be all green
 ```
 
-### E2E (testing/angular-e2e-lab only)
+### E2E (testing/ only)
 ```bash
-cd testing/angular-e2e-lab
+cd testing
 npm run e2e    # boots ng serve on :4200 then runs Cypress
 ```
 
@@ -77,7 +77,7 @@ npm run e2e    # boots ng serve on :4200 then runs Cypress
 - 4 near-duplicate `material-module.ts` files eliminated (standalone imports).
 - HammerJS removed from `angular-material-ui3` (Material 19+ handles touch natively).
 - Per-project **Vitest** unit tests with meaningful coverage (not just create-tests); HTTP services tested via `HttpTestingController`.
-- Migration recipe documented in [`MIGRATION-GUIDE.md`](./MIGRATION-GUIDE.md).
+- Migration recipe documented in [`MIGRATION-GUIDE.md`](docs/MIGRATION-GUIDE.md).
 
 ### Clean-code pass
 - RxJS 訂閱洩漏修復：`router.events` 與 HTTP 訂閱改用 `takeUntilDestroyed()`。

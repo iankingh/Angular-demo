@@ -2,7 +2,7 @@
 
 本指南記錄把舊版（Angular 5–12）子專案遷移到 **Angular 22（standalone、zoneless 預設、Vitest）** 的標準步驟。pilot 為 `advanced/angular-advanced`，已驗證 build + test 全綠。
 
-> **後續更新**：原 16 個子專案已合併為「每個分類一個 Angular 專案」（`forms/`、`routing/`、`material-ui/`、`http/`、`advanced/`、`features/` 各自為一個專案，`testing/angular-e2e-lab/` 為唯一子資料夾專案）。各 demo 以 lazy route 形式整合進同一 app。現況結構與測試數見根 [`README.md`](./README.md)。下方步驟仍為遷移當時的歷史記錄。
+> **後續更新**：原 16 個子專案已合併為「每個分類一個 Angular 專案」（`forms/`、`routing/`、`material-ui/`、`http/`、`advanced/`、`features/`、`testing/` 各自為一個專案）。各 demo 以 lazy route 形式整合進同一 app。現況結構與測試數見根 [`README.md`](../README.md)。下方步驟仍為遷移當時的歷史記錄。
 
 ## 0. 環境
 - Node：**必須 v22.22+ / v24.15+ / v26+**（系統 `node -v` 為 v26.5.0 即可；舊 nvm 的 v20 不可用於 Angular 22）。
