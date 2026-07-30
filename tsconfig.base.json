@@ -1,0 +1,28 @@
+// Shared TypeScript base for Angular 22 sub-projects.
+// NOTE: This is an OPTIONAL shared reference config — it is not currently
+// extended/wired by any sub-project's tsconfig.json. Kept for reference only.
+// Each sub-project's tsconfig.json may extend this via "extends" if desired.
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "module": "es2022",
+    "target": "es2022",
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": true,
+    "importHelpers": true,
+    "lib": ["es2022", "dom"]
+  }
+}

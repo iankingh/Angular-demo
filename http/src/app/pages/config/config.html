@@ -1,0 +1,8 @@
+<h3>Config</h3>
+
+@if (config(); as cfg) {
+  <p>heroesUrl: {{ cfg.heroesUrl }}</p>
+  <p>textfile: {{ cfg.textfile }}</p>
+} @else {
+  <p>Loading config…</p>
+}

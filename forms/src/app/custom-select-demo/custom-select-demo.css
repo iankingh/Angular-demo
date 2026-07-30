@@ -1,0 +1,9 @@
+:host {
+  font-family: system-ui, sans-serif;
+  display: block;
+  padding: 1rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+}

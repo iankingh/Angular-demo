@@ -1,0 +1,24 @@
+<section class="upload">
+  <h2>Image upload</h2>
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    class="upload__input"
+    (change)="onInputChange($event)"
+  />
+
+  <div class="upload__actions">
+    <button type="button" (click)="fileInput.click()">Choose image</button>
+    <button type="button" (click)="clear()" [disabled]="!previewUrl()">Clear</button>
+  </div>
+
+  @if (errorMessage()) {
+    <p class="upload__error">{{ errorMessage() }}</p>
+  }
+
+  @if (previewUrl()) {
+    <img class="upload__preview" [src]="previewUrl()" alt="Selected preview" />
+  }
+</section>

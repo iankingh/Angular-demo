@@ -1,0 +1,21 @@
+<h3>Edit Employee</h3>
+
+@if (employee(); as emp) {
+  <form (ngSubmit)="updateEmployee()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" [(ngModel)]="emp.name" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" [(ngModel)]="emp.email" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="number" [(ngModel)]="emp.phone" />
+    </div>
+    <button type="submit">Update</button>
+  </form>
+} @else {
+  <p>Loading…</p>
+}

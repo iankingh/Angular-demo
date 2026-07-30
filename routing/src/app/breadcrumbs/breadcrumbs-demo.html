@@ -1,0 +1,20 @@
+<nav>
+  <a routerLink="/">Home</a> |
+  <a routerLink="/breadcrumbs/page-a">Page A</a> |
+  <a routerLink="/breadcrumbs/page-b">Page B</a>
+</nav>
+
+<hr />
+
+<nav class="breadcrumbs">
+  @for (crumb of crumbs(); track crumb.url; let last = $last) {
+    @if (last) {
+      <span>{{ crumb.label }}</span>
+    } @else {
+      <a [routerLink]="crumb.url">{{ crumb.label }}</a>
+      <span> &gt; </span>
+    }
+  }
+</nav>
+
+<router-outlet />

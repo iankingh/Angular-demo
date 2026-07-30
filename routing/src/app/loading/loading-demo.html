@@ -1,0 +1,13 @@
+<nav>
+  <a routerLink="/loading/page-a">Page A</a>
+  |
+  <a routerLink="/loading/page-b">Page B</a>
+</nav>
+
+<router-outlet />
+
+@if (loading()) {
+  <div class="loading" role="status" aria-live="polite">
+    <span class="spinner" aria-label="Loading"></span>
+  </div>
+}

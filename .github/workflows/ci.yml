@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main, refactor/angular19]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@22
+
+      - name: Build & test every sub-project
+        run: |
+          set -e
+          fail=0
+          for proj in $(find . -maxdepth 3 -name angular.json ! -path '*/node_modules/*' | sed 's|/angular.json||' | sort); do
+            echo "::group::$proj"
+            (
+              cd "$proj"
+              npm ci
+              ng build
+              ng test
+            ) || { echo "::error::$proj failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail

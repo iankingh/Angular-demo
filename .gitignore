@@ -51,3 +51,26 @@ coverage/
 # Logs
 *.log
 logs/
+
+# Additional Angular CLI / build artifacts (from per-project scaffold)
+out-tsc/
+bazel-out/
+.sass-cache/
+*.tsbuildinfo
+
+# Additional IDE / editor files
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.history/
+
+# Miscellaneous
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+Thumbs.db

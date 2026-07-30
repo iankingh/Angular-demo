@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  max-width: 32rem;
+}
+
+.upload__input {
+  display: none;
+}
+
+.upload__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-block: 1rem;
+}
+
+.upload__preview {
+  block-size: 12rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  object-fit: contain;
+}
+
+.upload__error {
+  color: #c00;
+}
