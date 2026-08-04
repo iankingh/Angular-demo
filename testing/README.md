@@ -9,8 +9,8 @@ E2E 實驗室。用一個最小的 app（welcome 頁）示範 Cypress 端對端�
 
 ## 單元測試 / Unit tests
 ```bash
-npm install
-ng test       # Vitest，必須全綠（5 tests）
+npm ci
+npm test      # Vitest（5 tests）
 ```
 
 ## E2E（Cypress）
@@ -20,10 +20,11 @@ npm run e2e   # 先 ng serve :4200 再跑 Cypress
 
 ## 開發伺服器 / Dev server
 ```bash
-ng serve      # http://localhost:4200
+npm start     # http://localhost:4200
 ```
 
 ## 建置 / Build
 ```bash
-ng build
+npm run build
+npm run watch # development build watch mode
 ```

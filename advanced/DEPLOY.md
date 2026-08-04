@@ -10,7 +10,7 @@ The container builds and serves the `advanced-demo` app (the Hero form demo desc
 npm start
 ```
 
-Runs the dev server with `--host 0.0.0.0 --port 4201` (see `package.json`). Open <http://localhost:4201/>.
+Runs Angular's development server on its default address, <http://localhost:4200/>.
 
 ## Build
 

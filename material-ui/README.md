@@ -16,12 +16,13 @@ Angular Material UI 示範集。用四個獨立 demo 展示常見 Material 元�
 
 ## 執行 / Run
 ```bash
-npm install
-ng serve      # http://localhost:4200
+npm ci
+npm start      # http://localhost:4200
 ```
 
 ## 建置與測試 / Build & test
 ```bash
-ng build      # production build
-ng test       # Vitest，必須全綠（27 tests）
+npm run build # production build
+npm test      # Vitest（27 tests）
+npm run watch # development build watch mode
 ```

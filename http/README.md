@@ -19,14 +19,17 @@ HttpClient 示範。展示 Angular 22 的 HTTP 服務分層：把 API URL 集中
 ## 後端 / Backend
 員工/config 走 `http://localhost:3000`（JSON-server），上傳走 `http://localhost:8080`。本機需自行啟動 JSON-server 才能跑通真實流程；單元測試已 mock，不需後端。
 
+本倉庫未包含上述後端、啟動 script 或 `.env` 設定；URL 目前定義於 `src/app/api-urls.ts`。
+
 ## 執行 / Run
 ```bash
-npm install
-ng serve      # http://localhost:4200
+npm ci
+npm start      # http://localhost:4200
 ```
 
 ## 建置與測試 / Build & test
 ```bash
-ng build      # production build
-ng test       # Vitest，必須全綠（23 tests）
+npm run build # production build
+npm test      # Vitest（23 tests）
+npm run watch # development build watch mode
 ```
