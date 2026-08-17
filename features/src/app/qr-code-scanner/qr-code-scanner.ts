@@ -1,4 +1,4 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { BarcodeFormat } from '@zxing/browser';
 import type { IScannerControls } from '@zxing/browser';
 import { QrScannerAdapter } from './qr-scanner.adapter';
@@ -10,8 +10,10 @@ import { QrScannerAdapter } from './qr-scanner.adapter';
 })
 export class QrCodeScanner {
   private readonly adapter = inject(QrScannerAdapter);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly preview = viewChild.required<HTMLVideoElement>('preview');
   private controls: IScannerControls | null = null;
+  private scanSession = 0;
 
   readonly formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
@@ -30,34 +32,58 @@ export class QrCodeScanner {
   readonly tryHarder = signal(false);
   readonly scanning = signal(false);
 
+  constructor() {
+    this.destroyRef.onDestroy(() => this.stopScan());
+  }
+
   async startScan(): Promise<void> {
     if (this.scanning()) {
       return;
     }
+    const session = ++this.scanSession;
+    this.scanning.set(true);
+    this.adapter.setDecodeOptions(this.formatsEnabled, this.tryHarder());
+
     try {
       const devices = await this.adapter.listDevices();
+      if (session !== this.scanSession) {
+        return;
+      }
       this.availableDevices.set(devices);
       this.hasDevices.set(devices.length > 0);
-      this.hasPermission.set(true);
-      this.scanning.set(true);
 
       const deviceId = this.deviceSelected() || devices[0]?.deviceId || undefined;
-      this.controls = await this.adapter.decodeFromDevice(
-        deviceId,
-        this.preview(),
-        (text) => this.onCodeResult(text),
+      if (deviceId && !this.deviceSelected()) {
+        this.deviceSelected.set(deviceId);
+      }
+      const controls = await this.adapter.decodeFromDevice(deviceId, this.preview(), (text) =>
+        this.onCodeResult(text),
       );
+      if (session !== this.scanSession) {
+        controls.stop();
+        return;
+      }
+      this.controls = controls;
+      this.hasPermission.set(true);
+      this.onTorchCompatible(Boolean(controls.switchTorch));
     } catch {
+      if (session !== this.scanSession) {
+        return;
+      }
       // Typically a camera-permission denial; intentionally swallowed rather than rethrown.
       this.hasPermission.set(false);
       this.scanning.set(false);
+      this.onTorchCompatible(false);
     }
   }
 
   stopScan(): void {
+    this.scanSession += 1;
     this.controls?.stop();
     this.controls = null;
     this.scanning.set(false);
+    this.torchEnabled.set(false);
+    this.onTorchCompatible(false);
   }
 
   clearResult(): void {
@@ -68,11 +94,18 @@ export class QrCodeScanner {
     this.qrResultString.set(resultString);
   }
 
-  onDeviceSelectChange(selected: string): void {
+  async onDeviceSelectChange(selected: string): Promise<void> {
     if (this.deviceSelected() === selected) {
       return;
     }
+    const restart = this.scanning();
+    if (restart) {
+      this.stopScan();
+    }
     this.deviceSelected.set(selected);
+    if (restart) {
+      await this.startScan();
+    }
   }
 
   onTorchCompatible(isCompatible: boolean): void {
@@ -89,5 +122,6 @@ export class QrCodeScanner {
 
   toggleTryHarder(): void {
     this.tryHarder.update((value) => !value);
+    this.adapter.setDecodeOptions(this.formatsEnabled, this.tryHarder());
   }
 }

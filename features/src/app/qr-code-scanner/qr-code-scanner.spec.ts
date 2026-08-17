@@ -9,17 +9,27 @@ function makeDevice(id: string, label = id): MediaDeviceInfo {
 }
 
 function makeControls(): IScannerControls {
-  return { stop: vi.fn(() => {}), switchTorch: vi.fn(() => Promise.resolve()) } as unknown as IScannerControls;
+  return {
+    stop: vi.fn(() => {}),
+    switchTorch: vi.fn(() => Promise.resolve()),
+  } as unknown as IScannerControls;
 }
 
 describe('QrCodeScanner', () => {
   let mockControls: IScannerControls;
+  let setDecodeOptions: ReturnType<typeof vi.fn>;
 
   function configureWithAdapter(adapter: Partial<QrScannerAdapter>) {
     mockControls = makeControls();
+    setDecodeOptions = vi.fn();
     return TestBed.configureTestingModule({
       imports: [QrCodeScanner],
-      providers: [{ provide: QrScannerAdapter, useValue: adapter }],
+      providers: [
+        {
+          provide: QrScannerAdapter,
+          useValue: { setDecodeOptions, ...adapter },
+        },
+      ],
     }).compileComponents();
   }
 
@@ -54,8 +64,10 @@ describe('QrCodeScanner', () => {
     expect(component.tryHarder()).toBe(false);
     component.toggleTryHarder();
     expect(component.tryHarder()).toBe(true);
+    expect(setDecodeOptions).toHaveBeenLastCalledWith(component.formatsEnabled, true);
     component.toggleTryHarder();
     expect(component.tryHarder()).toBe(false);
+    expect(setDecodeOptions).toHaveBeenLastCalledWith(component.formatsEnabled, false);
   });
 
   it('toggleTorch is a no-op when torch is unavailable', async () => {
@@ -91,14 +103,22 @@ describe('QrCodeScanner', () => {
   });
 
   it('startScan enumerates devices, selects the first and starts decoding', async () => {
-    const decodeFromDevice = vi.fn().mockImplementation(
-      (_deviceId: string | undefined, _preview: HTMLVideoElement, onResult: (t: string) => void) => {
-        onResult('DECODED-123');
-        return Promise.resolve(mockControls);
-      },
-    );
+    const decodeFromDevice = vi
+      .fn()
+      .mockImplementation(
+        (
+          _deviceId: string | undefined,
+          _preview: HTMLVideoElement,
+          onResult: (t: string) => void,
+        ) => {
+          onResult('DECODED-123');
+          return Promise.resolve(mockControls);
+        },
+      );
     await configureWithAdapter({
-      listDevices: vi.fn().mockResolvedValue([makeDevice('cam-1', 'Front'), makeDevice('cam-2', 'Back')]),
+      listDevices: vi
+        .fn()
+        .mockResolvedValue([makeDevice('cam-1', 'Front'), makeDevice('cam-2', 'Back')]),
       decodeFromDevice,
     });
     const fixture = TestBed.createComponent(QrCodeScanner);
@@ -111,12 +131,44 @@ describe('QrCodeScanner', () => {
     expect(component.hasPermission()).toBe(true);
     expect(component.scanning()).toBe(true);
     expect(component.availableDevices().length).toBe(2);
+    expect(component.deviceSelected()).toBe('cam-1');
+    expect(component.torchAvailable()).toBe(true);
+    expect(setDecodeOptions).toHaveBeenCalledWith(component.formatsEnabled, false);
     expect(decodeFromDevice).toHaveBeenCalledWith('cam-1', expect.anything(), expect.any(Function));
     expect(component.qrResultString()).toBe('DECODED-123');
 
     component.stopScan();
     expect(mockControls.stop).toHaveBeenCalled();
     expect(component.scanning()).toBe(false);
+    expect(component.torchAvailable()).toBe(false);
+  });
+
+  it('restarts an active scan when the selected camera changes', async () => {
+    const firstControls = makeControls();
+    const secondControls = makeControls();
+    const decodeFromDevice = vi
+      .fn()
+      .mockResolvedValueOnce(firstControls)
+      .mockResolvedValueOnce(secondControls);
+    await configureWithAdapter({
+      listDevices: vi.fn().mockResolvedValue([makeDevice('cam-1'), makeDevice('cam-2')]),
+      decodeFromDevice,
+    });
+    const fixture = TestBed.createComponent(QrCodeScanner);
+    fixture.detectChanges();
+    const component = fixture.componentInstance;
+    await component.startScan();
+
+    await component.onDeviceSelectChange('cam-2');
+
+    expect(firstControls.stop).toHaveBeenCalled();
+    expect(decodeFromDevice).toHaveBeenLastCalledWith(
+      'cam-2',
+      expect.anything(),
+      expect.any(Function),
+    );
+    expect(component.deviceSelected()).toBe('cam-2');
+    component.stopScan();
   });
 
   it('startScan is a no-op while already scanning', async () => {
@@ -148,5 +200,20 @@ describe('QrCodeScanner', () => {
 
     expect(component.hasPermission()).toBe(false);
     expect(component.scanning()).toBe(false);
+  });
+
+  it('stops an active camera stream when the component is destroyed', async () => {
+    const controls = makeControls();
+    await configureWithAdapter({
+      listDevices: vi.fn().mockResolvedValue([makeDevice('cam-1')]),
+      decodeFromDevice: vi.fn().mockResolvedValue(controls),
+    });
+    const fixture = TestBed.createComponent(QrCodeScanner);
+    fixture.detectChanges();
+    await fixture.componentInstance.startScan();
+
+    fixture.destroy();
+
+    expect(controls.stop).toHaveBeenCalled();
   });
 });

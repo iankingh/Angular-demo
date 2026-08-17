@@ -1,6 +1,6 @@
 # Angular 22 現代化遷移指南（MIGRATION-GUIDE）
 
-本指南記錄把舊版（Angular 5–12）子專案遷移到 **Angular 22（standalone、zoneless 預設、Vitest）** 的標準步驟。pilot 為 `advanced/angular-advanced`，已驗證 build + test 全綠。
+本指南記錄把舊版（Angular 5–12）子專案遷移到 **Angular 22（standalone、zoneless 預設、Vitest）** 的標準步驟。最初的 pilot 現已整併至 `advanced/`；遷移時曾驗證 build + test 全綠。
 
 > **後續更新**：原 16 個子專案已合併為「每個分類一個 Angular 專案」（`forms/`、`routing/`、`material-ui/`、`http/`、`advanced/`、`features/`、`testing/` 各自為一個專案）。各 demo 以 lazy route 形式整合進同一 app。現況結構與測試數見根 [`README.md`](../README.md)。下方步驟仍為遷移當時的歷史記錄。
 

@@ -30,7 +30,7 @@ npm start      # http://localhost:4200
 ## 建置與測試 / Build & test
 ```bash
 npm run build # production build
-npm test      # Vitest（54 tests）
+npm test      # Vitest（56 tests）
 npm run watch # development build watch mode
 ```
 

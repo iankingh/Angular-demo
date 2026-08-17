@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BarcodeFormat, DecodeHintType } from '@zxing/library';
-import {
-  BrowserCodeReader,
-  BrowserMultiFormatReader,
-  IScannerControls,
-} from '@zxing/browser';
+import { BrowserCodeReader, BrowserMultiFormatReader, IScannerControls } from '@zxing/browser';
 
 /**
  * Thin wrapper around the framework-agnostic @zxing/browser reader so the
@@ -13,19 +9,15 @@ import {
  */
 @Injectable({ providedIn: 'root' })
 export class QrScannerAdapter {
-  private readonly reader = new BrowserMultiFormatReader(
-    new Map([
-      [
-        DecodeHintType.POSSIBLE_FORMATS,
-        [
-          BarcodeFormat.QR_CODE,
-          BarcodeFormat.CODE_128,
-          BarcodeFormat.DATA_MATRIX,
-          BarcodeFormat.EAN_13,
-        ],
-      ],
-    ]),
-  );
+  private readonly reader = new BrowserMultiFormatReader();
+
+  setDecodeOptions(formats: BarcodeFormat[], tryHarder: boolean): void {
+    const hints = new Map<DecodeHintType, unknown>([[DecodeHintType.POSSIBLE_FORMATS, formats]]);
+    if (tryHarder) {
+      hints.set(DecodeHintType.TRY_HARDER, true);
+    }
+    this.reader.setHints(hints);
+  }
 
   listDevices(): Promise<MediaDeviceInfo[]> {
     return BrowserCodeReader.listVideoInputDevices();

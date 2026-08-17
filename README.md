@@ -68,8 +68,8 @@ npm run cy:open
 
 ## 測試狀態與限制 / Status
 
-- 目前共有 178 個 Vitest unit tests；`testing/` 另有 3 個 Cypress E2E tests。
-- 所有子專案的 `npm run build` 與 `npm test`，以及 `testing/npm run e2e` 已驗證通過。
+- 目前共有 184 個 Vitest unit tests；`testing/` 另有 3 個 Cypress E2E tests。
+- 遷移完成時曾全量驗證各子專案的 `npm run build` 與 `npm test`，以及 `testing/npm run e2e`；目前 Node 26.5.0 環境的 production build 可能在 `Building...` 階段以 exit 134 終止，需在 Node 22.22.3 重新全量驗證後才能更新為當前全綠狀態。
 - `features/` 的 QR scanner 會受攝影機權限、瀏覽器能力與安全來源限制。
 - `http/` 的 UI 不會自動啟動 API server。
 
