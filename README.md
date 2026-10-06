@@ -16,7 +16,7 @@ Angular 學習範例集。根目錄下的每個分類都是可獨立安裝、執
 
 ## 技術棧 / Stack
 
-- Angular `22.0.x`、Angular CLI `22.0.x`
+- Angular `22.2.x`、Angular CLI `22.2.x`
 - TypeScript `~6.0.2`、RxJS `~7.8`
 - Vitest `4.x`；`testing/` 另使用 Cypress `15.x`
 - Angular Material `22.x`（`forms/`、`material-ui/`）
@@ -45,7 +45,7 @@ npm start                # ng serve，預設 http://localhost:4200
 ```bash
 npm run build            # production build
 npm run watch            # development build watch mode
-npm test                 # Vitest unit tests
+npm test -- --watch=false # Vitest unit tests（一次執行）
 ```
 
 只有 `testing/` 提供 Cypress 指令：
@@ -69,8 +69,17 @@ npm run cy:open
 ## 測試狀態與限制 / Status
 
 - 目前共有 184 個 Vitest unit tests；`testing/` 另有 3 個 Cypress E2E tests。
-- 遷移完成時曾全量驗證各子專案的 `npm run build` 與 `npm test`，以及 `testing/npm run e2e`；目前 Node 26.5.0 環境的 production build 可能在 `Building...` 階段以 exit 134 終止，需在 Node 22.22.3 重新全量驗證後才能更新為當前全綠狀態。
-- `features/` 的 QR scanner 會受攝影機權限、瀏覽器能力與安全來源限制。
+- 2026-10-05 使用 Node **22.22.3** / npm **10.9.8** 驗證目前的 Angular 22.2.1 依賴：7 個 production builds 與 184 個 unit tests 全綠；Cypress 15.19.0 / Electron 138 headless 的 welcome 3 tests 與 demo controls 4 tests 皆通過。此結果不代表重新驗證 Node 26 的所有 build。
+- demo controls 瀏覽器測試涵蓋 QR 真實 ZXing 解碼（合成 canvas 攝影機）、切換裝置／torch constraints／停止與離頁清理、權限拒絕、Material Icons 字型載入，以及 resolver 導覽 spinner／同 URL 導覽。執行方式見 [`testing/README.md`](testing/README.md)。
+- QR 測試不需實體攝影機，但硬體攝影機權限、真正的 torch 與其他瀏覽器仍需人工驗收；Material Icons 字型由 Google Fonts 載入，該瀏覽器測試需要網路。
 - `http/` 的 UI 不會自動啟動 API server。
+
+在支援的 Node 環境下，從 repository 根目錄重跑所有 build / unit tests：
+
+```bash
+for project in advanced features forms http material-ui routing testing; do
+  (cd "$project" && npm run build && npm test -- --watch=false) || exit 1
+done
+```
 
 Angular 現代化與舊專案合併方式見 [Migration Guide](docs/MIGRATION-GUIDE.md)。

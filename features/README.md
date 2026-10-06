@@ -34,4 +34,4 @@ npm test      # Vitest（56 tests）
 npm run watch # development build watch mode
 ```
 
-QR 掃描需瀏覽器攝影機權限，並可能受瀏覽器能力與安全來源限制。
+QR 掃描需瀏覽器攝影機權限，並可能受瀏覽器能力與安全來源限制。Scanner 將 Angular `ElementRef` 的原生 `<video>` 傳給 ZXing；unit regression test 檢查實際 DOM 元素，另有合成攝影機的真實瀏覽器解碼與控制項測試（見 [`testing/README.md`](../testing/README.md)）。後者不驗證實體攝影機與硬體 torch。

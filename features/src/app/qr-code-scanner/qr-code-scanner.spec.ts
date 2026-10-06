@@ -134,7 +134,11 @@ describe('QrCodeScanner', () => {
     expect(component.deviceSelected()).toBe('cam-1');
     expect(component.torchAvailable()).toBe(true);
     expect(setDecodeOptions).toHaveBeenCalledWith(component.formatsEnabled, false);
-    expect(decodeFromDevice).toHaveBeenCalledWith('cam-1', expect.anything(), expect.any(Function));
+    expect(decodeFromDevice).toHaveBeenCalledWith(
+      'cam-1',
+      fixture.nativeElement.querySelector('video'),
+      expect.any(Function),
+    );
     expect(component.qrResultString()).toBe('DECODED-123');
 
     component.stopScan();

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { BarcodeFormat } from '@zxing/browser';
 import type { IScannerControls } from '@zxing/browser';
 import { QrScannerAdapter } from './qr-scanner.adapter';
@@ -11,7 +11,7 @@ import { QrScannerAdapter } from './qr-scanner.adapter';
 export class QrCodeScanner {
   private readonly adapter = inject(QrScannerAdapter);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly preview = viewChild.required<HTMLVideoElement>('preview');
+  private readonly preview = viewChild.required<ElementRef<HTMLVideoElement>>('preview');
   private controls: IScannerControls | null = null;
   private scanSession = 0;
 
@@ -56,8 +56,10 @@ export class QrCodeScanner {
       if (deviceId && !this.deviceSelected()) {
         this.deviceSelected.set(deviceId);
       }
-      const controls = await this.adapter.decodeFromDevice(deviceId, this.preview(), (text) =>
-        this.onCodeResult(text),
+      const controls = await this.adapter.decodeFromDevice(
+        deviceId,
+        this.preview().nativeElement,
+        (text) => this.onCodeResult(text),
       );
       if (session !== this.scanSession) {
         controls.stop();
